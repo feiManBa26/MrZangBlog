@@ -21,7 +21,7 @@ description: java Android 参数传递 Builder 模式
 以UCrop 构建类 UCrop.java 为例
 
 
-![](\bulider\bulider_01.png)
+![](\bulider_01.png)
 
 
 ```java
@@ -38,7 +38,7 @@ description: java Android 参数传递 Builder 模式
 
 参数构造集 内部类
 
-![](\MrZangBlog\img\bulider\bulider_02.png)
+![](\bulider_02.png)
 
 构造函数不对外开放 内部逻辑调用
 
