@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="Mr.zang 的博客">
 <meta property="og:description" content="java Android 参数传递 Builder 模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider/bulider_01.png">
-<meta property="og:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/MrZangBlog/img/bulider/bulider_02.png">
-<meta property="og:updated_time" content="2019-08-15T13:47:24.819Z">
+<meta property="og:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider_01.png">
+<meta property="og:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider_02.png">
+<meta property="og:updated_time" content="2019-08-15T14:45:45.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="探究 Java Builder 模式">
 <meta name="twitter:description" content="java Android 参数传递 Builder 模式">
-<meta name="twitter:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider/bulider_01.png">
+<meta name="twitter:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider_01.png">
 
 
 
@@ -379,10 +379,10 @@
 <li>等 、、、</li>
 </ul>
 <p>以UCrop 构建类 UCrop.java 为例</p>
-<p><img src="/MrZangBlog/2019/08/15/java_bulider/bulider\bulider_01.png" alt></p>
+<p><img src="/MrZangBlog/2019/08/15/java_bulider/bulider_01.png" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UCrop.Options options = <span class="keyword">new</span> UCrop.Options();</span><br><span class="line">     options.setHideBottomControls(<span class="keyword">true</span>);</span><br><span class="line">     options.setFreeStyleCropEnabled(clipBoxMove);</span><br><span class="line">     <span class="comment">//设置裁剪的图片质量，取值0-100</span></span><br><span class="line">     options.setCompressionQuality(compress);</span><br><span class="line">     UCrop.of(Uri.parse(sourceFilePath), Uri.parse(outPutFilePath))</span><br><span class="line">             .withAspectRatio(scaleX, scaleY)</span><br><span class="line">             .withOptions(options)</span><br><span class="line">             .start(activity);</span><br></pre></td></tr></table></figure>
 <p>参数构造集 内部类</p>
-<p><img src="/MrZangBlog/2019/08/15/java_bulider/MrZangBlog\img\bulider\bulider_02.png" alt></p>
+<p><img src="/MrZangBlog/2019/08/15/java_bulider/bulider_02.png" alt></p>
 <p>构造函数不对外开放 内部逻辑调用</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">UCrop</span><span class="params">(@NonNull Uri source, @NonNull Uri destination)</span> </span>&#123;</span><br><span class="line">    mCropIntent = <span class="keyword">new</span> Intent();</span><br><span class="line">    mCropOptionsBundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">    mCropOptionsBundle.putParcelable(EXTRA_INPUT_URI, source);</span><br><span class="line">    mCropOptionsBundle.putParcelable(EXTRA_OUTPUT_URI, destination);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>公开 静态方法 供外部调用</p>
@@ -429,6 +429,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/MrZangBlog/2019/08/15/启动模式/" rel="prev" title="启动模式">
+                启动模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -505,7 +509,7 @@
               
                 <a href="/MrZangBlog/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -516,7 +520,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/MrZangBlog/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
