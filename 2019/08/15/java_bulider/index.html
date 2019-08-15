@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="flutter,">
+  <meta name="keywords" content="Android,Builder,">
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="flutter 环境搭建">
-<meta name="keywords" content="flutter">
+<meta name="description" content="java Android 参数传递 Builder 模式">
+<meta name="keywords" content="Android,Builder">
 <meta property="og:type" content="article">
-<meta property="og:title" content="flutter_01">
-<meta property="og:url" content="https://silencemrzang.github.io/MrZangBlog/2019/08/08/flutter-01/index.html">
+<meta property="og:title" content="探究 Java Builder 模式">
+<meta property="og:url" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/index.html">
 <meta property="og:site_name" content="Mr.zang 的博客">
-<meta property="og:description" content="flutter 环境搭建">
+<meta property="og:description" content="java Android 参数传递 Builder 模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-08T07:06:02.000Z">
+<meta property="og:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider/bulider_01.png">
+<meta property="og:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/MrZangBlog/img/bulider/bulider_02.png">
+<meta property="og:updated_time" content="2019-08-15T13:47:24.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="flutter_01">
-<meta name="twitter:description" content="flutter 环境搭建">
+<meta name="twitter:title" content="探究 Java Builder 模式">
+<meta name="twitter:description" content="java Android 参数传递 Builder 模式">
+<meta name="twitter:image" content="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/bulider/bulider_01.png">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://silencemrzang.github.io/MrZangBlog/2019/08/08/flutter-01/">
+  <link rel="canonical" href="https://silencemrzang.github.io/MrZangBlog/2019/08/15/java_bulider/">
 
 
 
 
 
-  <title>flutter_01 | Mr.zang 的博客</title>
+  <title>探究 Java Builder 模式 | Mr.zang 的博客</title>
   
 
 
@@ -263,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://silencemrzang.github.io/MrZangBlog/MrZangBlog/2019/08/08/flutter-01/">
+    <link itemprop="mainEntityOfPage" href="https://silencemrzang.github.io/MrZangBlog/MrZangBlog/2019/08/15/java_bulider/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.zang">
@@ -280,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">flutter_01</h1>
+          <h1 class="post-title" itemprop="name headline">探究 Java Builder 模式</h1>
         
 
         <div class="post-meta">
@@ -292,8 +295,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-08T15:03:05+08:00">
-                2019-08-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-15T09:38:59+08:00">
+                2019-08-15
               </time>
             
 
@@ -302,6 +305,39 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/MrZangBlog/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/MrZangBlog/categories/Android/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -317,7 +353,7 @@
 
           
               <div class="post-description">
-                  flutter 环境搭建
+                  java Android 参数传递 Builder 模式
               </div>
           
 
@@ -334,7 +370,25 @@
       
 
       
-        
+        <h2 id="Java-设计模式Builder-模式"><a href="#Java-设计模式Builder-模式" class="headerlink" title="# Java 设计模式Builder 模式"></a># Java 设计模式Builder 模式</h2><blockquote>
+<p>Java Builder模式主要是用一个内部类去实例化一个对象，避免一个类出现过多构造函数，而且构造函数如果出现默认参数的话，很容易出错</p>
+</blockquote>
+<h3 id="Android-Builder-模式-实践的第三方库"><a href="#Android-Builder-模式-实践的第三方库" class="headerlink" title="Android Builder 模式 实践的第三方库"></a>Android Builder 模式 实践的第三方库</h3><ul>
+<li>Glide <code>图片加载库</code></li>
+<li>UCrop <code>图片裁剪</code></li>
+<li>等 、、、</li>
+</ul>
+<p>以UCrop 构建类 UCrop.java 为例</p>
+<p><img src="/MrZangBlog/2019/08/15/java_bulider/bulider\bulider_01.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UCrop.Options options = <span class="keyword">new</span> UCrop.Options();</span><br><span class="line">     options.setHideBottomControls(<span class="keyword">true</span>);</span><br><span class="line">     options.setFreeStyleCropEnabled(clipBoxMove);</span><br><span class="line">     <span class="comment">//设置裁剪的图片质量，取值0-100</span></span><br><span class="line">     options.setCompressionQuality(compress);</span><br><span class="line">     UCrop.of(Uri.parse(sourceFilePath), Uri.parse(outPutFilePath))</span><br><span class="line">             .withAspectRatio(scaleX, scaleY)</span><br><span class="line">             .withOptions(options)</span><br><span class="line">             .start(activity);</span><br></pre></td></tr></table></figure>
+<p>参数构造集 内部类</p>
+<p><img src="/MrZangBlog/2019/08/15/java_bulider/MrZangBlog\img\bulider\bulider_02.png" alt></p>
+<p>构造函数不对外开放 内部逻辑调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="title">UCrop</span><span class="params">(@NonNull Uri source, @NonNull Uri destination)</span> </span>&#123;</span><br><span class="line">    mCropIntent = <span class="keyword">new</span> Intent();</span><br><span class="line">    mCropOptionsBundle = <span class="keyword">new</span> Bundle();</span><br><span class="line">    mCropOptionsBundle.putParcelable(EXTRA_INPUT_URI, source);</span><br><span class="line">    mCropOptionsBundle.putParcelable(EXTRA_OUTPUT_URI, destination);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>公开 静态方法 供外部调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * This method creates new Intent builder and sets both </span></span><br><span class="line"><span class="comment">    * source and destination image URIs.</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> source      Uri for image to crop</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> destination Uri for saving the cropped image</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> UCrop <span class="title">of</span><span class="params">(@NonNull Uri source, @NonNull Uri destination)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> UCrop(source, destination);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>参数集合 赋值给 Ucrop 构造类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> UCrop <span class="title">withOptions</span><span class="params">(@NonNull Options options)</span> </span>&#123;</span><br><span class="line">        mCropOptionsBundle.putAll(options.getOptionBundle());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Get Intent to start &#123;<span class="doctag">@link</span> UCropActivity&#125;</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span> Intent for &#123;<span class="doctag">@link</span> UCropActivity&#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> Intent <span class="title">getIntent</span><span class="params">(@NonNull Context context)</span> </span>&#123;</span><br><span class="line">       mCropIntent.setClass(context, UCropActivity.class);</span><br><span class="line">       mCropIntent.putExtras(mCropOptionsBundle);</span><br><span class="line">       <span class="keyword">return</span> mCropIntent;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Send the crop Intent from an Activity with a custom request code</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> activity    Activity to receive result</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> requestCode requestCode for result</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(@NonNull Activity activity, <span class="keyword">int</span> requestCode)</span> </span>&#123;</span><br><span class="line">       activity.startActivityForResult(getIntent(activity), requestCode);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -351,7 +405,9 @@
       
         <div class="post-tags">
           
-            <a href="/MrZangBlog/tags/flutter/" rel="tag"># flutter</a>
+            <a href="/MrZangBlog/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/MrZangBlog/tags/Builder/" rel="tag"># Builder</a>
           
         </div>
       
@@ -364,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/MrZangBlog/2019/08/08/hexo-init/" rel="next" title="hexo_init">
-                <i class="fa fa-chevron-left"></i> hexo_init
+              <a href="/MrZangBlog/2019/08/08/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -373,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/MrZangBlog/2019/08/08/flutter-02/" rel="prev" title="flutter_02">
-                flutter_02 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,8 +480,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -523,6 +584,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-设计模式Builder-模式"><span class="nav-number">1.</span> <span class="nav-text"># Java 设计模式Builder 模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Builder-模式-实践的第三方库"><span class="nav-number">1.1.</span> <span class="nav-text">Android Builder 模式 实践的第三方库</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
